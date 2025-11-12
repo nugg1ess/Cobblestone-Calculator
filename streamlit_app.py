@@ -206,7 +206,8 @@ with loc2:
 
 
 option = st.selectbox(
-    label = "",
+    label = "nothing",
+    label_visibility = "hidden",
     options = select,
 )
 st.session_state.type = option
