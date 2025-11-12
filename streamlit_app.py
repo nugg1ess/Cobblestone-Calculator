@@ -393,7 +393,23 @@ if selector == "Corrosive":
         createBox("Azure", getColor("azure"), azureTotal)
 
         st.divider()
-            
+
+        createName("Auburn", getColor("auburn"),getColor("auburn"), 1)
+        createBox("Cherry", getColor("cherry"), auburn1Cherry)
+        st.markdown("<br>", unsafe_allow_html=True)
+        createName("Auburn", getColor("auburn"),getColor("auburn"), 2)
+        createBox("Auburn", getColor("auburn"), auburn2Auburn)
+        st.markdown("<br>", unsafe_allow_html=True)
+        createName("Auburn", getColor("auburn"),getColor("auburn"), 3)
+        createBox("Auburn", getColor("auburn"), auburn3Auburn)
+        st.markdown("<br>", unsafe_allow_html=True)
+        createName("Auburn", getColor("auburn"),getColor("auburn"), 4)
+        createBox("Auburn", getColor("auburn"), auburn4Auburn)
+        st.markdown("<br>", unsafe_allow_html=True)
+        createName("Auburn", getColor("auburn"),getColor("auburn"), 5)
+        createBox("Cherry", getColor("cherry"), auburn5Cherry)
+        createBox("Auburn", getColor("auburn"), auburn5Auburn)
+        st.markdown("<br>", unsafe_allow_html=True)
 
     elif type == "Extras":
         
