@@ -1,6 +1,11 @@
 import streamlit as st
 
 
+st.set_page_config(
+    page_title="Cobblestone Calculator",
+    page_icon=":stuck_out_tongue:",
+)
+
 def formatNumber(number):
     if number < 1000:
         return str(number)
