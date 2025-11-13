@@ -100,7 +100,7 @@ def createName(name, str, str1, num):
 
 def createBox(name, str, num):
     return st.markdown(f"""
-        <div style="background-color: #gray; padding: 15px; border-radius: 12px; border: 1.6px solid {str};">
+        <div style="background-color: #gray; padding: 15px; border-radius: 18px; border: 1.5px solid {str};">
             <span style="color: #FFFFFF; font-weight: bold;">{name}:</span> 
             <span style="color: {str}; font-weight: bold;">{num}</span>
         </div>
