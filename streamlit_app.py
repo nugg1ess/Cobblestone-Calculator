@@ -91,18 +91,28 @@ def getColor(str):
         return "#c3fc19"
 
 def createName(name, str, str1, num):
-    loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,2,1,1])
+    loc1, loc2, loc3, loc4, loc5 = st.columns([1, 1, 2, 1, 1])
     with loc3:
-        return st.markdown(f"""
-            <span style="
-                background: linear-gradient(to right, {str}, {str1}, {str});
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                font-weight: bold;
-            ">{name}</span>
-            <span style="color:#YOUR_COLOR; font-weight: bold;"> {roman(num)}</span>
-            """, unsafe_allow_html=True)
+        st.markdown(f"""
+            <div style="text-align: center;">
+                <span style="color:{str}; font-weight: bold;">{name}</span>
+                <span style="color:#FFFFFF; font-weight: bold;"> {roman(num)}</span>
+            </div>
+        """, unsafe_allow_html=True)
+
+#def createName(name, str, str1, num):
+#    loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,2,1,1])
+#    with loc3:
+#        return st.markdown(f"""
+#            <span style="
+#                background: linear-gradient(to right, {str}, {str1}, {str});
+#                -webkit-background-clip: text;
+#                -webkit-text-fill-color: transparent;
+#                background-clip: text;
+#                font-weight: bold;
+#            ">{name}</span>
+#            <span style="color:#FFFFFF; font-weight: bold;"> {roman(num)}</span>
+#            """, unsafe_allow_html=True)
 
 def createBox(name, str, num):
     return st.markdown(f"""
