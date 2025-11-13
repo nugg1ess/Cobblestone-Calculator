@@ -61,6 +61,18 @@ def getColor(str):
     elif str == "azure":
         return "#004bfc"
 
+    elif str == "twilight":
+        return "#fcb500"
+    elif str == "abyss":
+        return "#0004fc"
+    elif str == "ender":
+        return "#da00fc"
+    elif str == "void":
+        return "#5a0000"
+
+    elif str == "crystal":
+        return "#5500b6"
+
     elif str == "rust":
         return "#b5400e"
 
@@ -88,11 +100,18 @@ def createName(name, str, str1, num):
 
 def createBox(name, str, num):
     return st.markdown(f"""
-        <div style="background-color: #gray; padding: 15px; border-radius: 5px; border: 2px solid {str};">
+        <div style="background-color: #gray; padding: 15px; border-radius: 12px; border: 1.6px solid {str};">
             <span style="color: #FFFFFF; font-weight: bold;">{name}:</span> 
             <span style="color: {str}; font-weight: bold;">{num}</span>
         </div>
         """, unsafe_allow_html=True)
+
+#def createSelector(list): str:
+#    st.selectbox(
+#        label = "nothing",
+#        label_visibility = "hidden",
+#        options = list,
+#    )
 
 st.markdown("""
     <style>
@@ -195,10 +214,13 @@ except ValueError:
 st.divider()
 
 select = []
+switcher = []
 if st.session_state.selector == "Toolmess":
     select = ["All Materials","Golden Hoe [V]","Iron Pickaxe [V]","Azure Extractor [V]","Twilight Scythe [V]"]
+    switcher = ["Golden Hoe [V]","Iron Pickaxe [V]","Azure Extractor [V]","Twilight Scythe [V]"]
 elif st.session_state.selector == "Corrosive":
     select = ["All Materials","Superior Mushroom Knife [V]","Enchanted Evoker [V]","The Soul Scythe [V]","Crystal Crusher [V]","Extras"]
+    switcher = ["Superior Mushroom Knife [V]","Enchanted Evoker [V]","The Soul Scythe [V]","Crystal Crusher [V]"]
 
 loc1,loc2,loc3 = st.columns([1,1,1])
 with loc2:
@@ -220,8 +242,60 @@ num = st.session_state.amount
 
 
 if selector == "Corrosive":
+    if type == "All Materials":
 
-    if type == "Superior Mushroom Knife [V]":
+        infTotal = formatNumber(622_500_000 * num)
+        supTotal = formatNumber(307_500_000 * num)
+        ironTotal = formatNumber(10000000000 * num)
+        cherryTotal = formatNumber((10_000_000_000 * 3) * num)
+        auburnTotal = formatNumber(((50_000_000)+(10_000_000_000 * 3)) * num)
+        carmineTotal = formatNumber((10_000_000_000 * 3) * num)
+        ceruleanTotal = formatNumber((10_000_000_000 * 3) * num)
+        azureTotal = formatNumber(((50_000_000)+(10_000_000_000 * 3)+(20_000_000_000)) * num)
+        twilightTotal = formatNumber(20000000000 * num)
+        abyssTotal = formatNumber(20000000000 * num)
+        enderTotal = formatNumber(20000000000 * num)
+        voidTotal = formatNumber(20000000000 * num)
+
+        rustTotal = formatNumber(10000000000 * num)
+
+        crusherTotal = formatNumber(1 * num)
+        crystalTotal = formatNumber(1_900_000_000 * num)
+
+        hageyeTotal = formatNumber(64 * num)
+
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,1,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
+
+        createBox("Inferior Mushroom", getColor("inferior"), infTotal)
+        createBox("Superior Mushroom", getColor("superior"), supTotal)
+        createBox("Iron", getColor("iron"), ironTotal)
+        createBox("Cherry", getColor("cherry"), cherryTotal)
+        createBox("Auburn Roots", getColor("auburn"), auburnTotal)
+        createBox("Carmine Fungus", getColor("carmine"), carmineTotal)
+        createBox("Cerulean Fungus", getColor("cerulean"), ceruleanTotal)
+        createBox("Azure Roots", getColor("azure"), azureTotal)
+        createBox("Twilight Coral", getColor("twilight"), twilightTotal)
+        createBox("Abyss Coral", getColor("abyss"), abyssTotal)
+        createBox("Ender Coral", getColor("ender"), enderTotal)
+        createBox("Void Coral", getColor("void"), voidTotal)
+        createBox("End Crystal", getColor("crystal"), crystalTotal)
+        createBox("Rust", getColor("rust"), rustTotal)
+
+        st.markdown("<br>", unsafe_allow_html=True)     
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,1,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Boss Drops</p>', unsafe_allow_html=True)
+        
+        createBox("Crystal Crusher [I]", getColor("crystal"), crusherTotal)
+        createBox("Hag Eye", getColor("hageye"), hageyeTotal)
+
+
+
+        st.divider()
+
+    elif type == "Superior Mushroom Knife [V]":
 
         infTotal = formatNumber(622_500_000 * num)
         supTotal = formatNumber(307_500_000 * num)
@@ -248,180 +322,143 @@ if selector == "Corrosive":
             st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
 
         createBox("Auburn Roots", getColor("auburn"), auburnTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
         createBox("Azure Roots", getColor("azure"), azureTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
         createBox("Inferior Mushroom", getColor("inferior"), infTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
         createBox("Superior Mushroom", getColor("superior"), supTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
         st.divider()
             
+        switch = st.selectbox(
+            label = "nothing",
+            label_visibility = "hidden",
+            options = ["Inferior Mushroom Knife","Superior Mushroom Knife"]
+        )
 
-        createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 1)
-        createBox("Auburn", getColor("auburn"), inf1Auburn)
-        #st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Azure", getColor("azure"), inf1Azure)
-        st.markdown("<br>", unsafe_allow_html=True)
-                    
-        createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 2)
-        createBox("Inferior Mushroom", getColor("inferior"), inf2Inf)
-        st.markdown("<br>", unsafe_allow_html=True)
-                    
-        createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 3)
-        createBox("Inferior Mushroom", getColor("inferior"), inf3Inf)
-        st.markdown("<br>", unsafe_allow_html=True)
-                    
-        createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 4)
-        createBox("Inferior Mushroom", getColor("inferior"), inf4Inf)
-        st.markdown("<br>", unsafe_allow_html=True)
-          
-        createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 5)
-        createBox("Inferior Mushroom", getColor("inferior"), inf5Inf)
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.divider()
-
-        createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 1)
-        createBox("Inferior Mushroom", getColor("inferior"), sup1Inf)
-        st.markdown("<br>", unsafe_allow_html=True)
-                    
-        createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 2)
-        createBox("Superior Mushroom", getColor("superior"), sup2Sup)
-        st.markdown("<br>", unsafe_allow_html=True)
-                    
-        createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 3)
-        createBox("Superior Mushroom", getColor("superior"), sup3Sup)
-        st.markdown("<br>", unsafe_allow_html=True)
-                    
-        createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 4)
-        createBox("Inferior Mushroom", getColor("inferior"), sup4Inf)
-        createBox("Superior Mushroom", getColor("superior"), sup4Sup)
-        st.markdown("<br>", unsafe_allow_html=True)
-          
-        createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 5)
-        createBox("Inferior Mushroom", getColor("inferior"), sup5Inf)
-        createBox("Superior Mushroom", getColor("superior"), sup5Sup)
-        st.markdown("<br>", unsafe_allow_html=True)
+        if switch == "Inferior Mushroom Knife":
+            createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 1)
+            createBox("Auburn", getColor("auburn"), inf1Auburn)
+            createBox("Azure", getColor("azure"), inf1Azure)
+            st.markdown("<br>", unsafe_allow_html=True)       
+            createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 2)
+            createBox("Inferior Mushroom", getColor("inferior"), inf2Inf)
+            st.markdown("<br>", unsafe_allow_html=True)        
+            createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 3)
+            createBox("Inferior Mushroom", getColor("inferior"), inf3Inf)
+            st.markdown("<br>", unsafe_allow_html=True)       
+            createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 4)
+            createBox("Inferior Mushroom", getColor("inferior"), inf4Inf)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Inferior Mushroom Knife", getColor("inferior"),getColor("inferior"), 5)
+            createBox("Inferior Mushroom", getColor("inferior"), inf5Inf)
+            st.markdown("<br>", unsafe_allow_html=True)
+        elif switch == "Superior Mushroom Knife":
+            createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 1)
+            createBox("Inferior Mushroom", getColor("inferior"), sup1Inf)
+            st.markdown("<br>", unsafe_allow_html=True)       
+            createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 2)
+            createBox("Superior Mushroom", getColor("superior"), sup2Sup)
+            st.markdown("<br>", unsafe_allow_html=True)     
+            createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 3)
+            createBox("Superior Mushroom", getColor("superior"), sup3Sup)
+            st.markdown("<br>", unsafe_allow_html=True)        
+            createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 4)
+            createBox("Inferior Mushroom", getColor("inferior"), sup4Inf)
+            createBox("Superior Mushroom", getColor("superior"), sup4Sup)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Superior Mushroom Knife", getColor("inferior"),getColor("superior"), 5)
+            createBox("Inferior Mushroom", getColor("inferior"), sup5Inf)
+            createBox("Superior Mushroom", getColor("superior"), sup5Sup)
+            st.markdown("<br>", unsafe_allow_html=True)
         st.divider()
 
     elif type == "Enchanted Evoker [V]":
-        wheatTotal = formatNumber(22500000 * num)
-        potatoTotal = formatNumber(22500000 * num)
-        beetrootTotal = formatNumber(22500000 * num)
-        amethystTotal = formatNumber(180000000 * num)
-        spruceTotal = formatNumber(31500000 * num)
-        cherryTotal = formatNumber(252000000 * num)
-        auburnTotal = formatNumber(486000000 * num)
-        carmineTotal = formatNumber(513000000 * num)
-        ceruleanTotal = formatNumber(564750000 * num)
-        azureTotal = formatNumber(850500000 * num)
 
-        auburn1Cherry = formatNumber(15_000_000 * num)
-        auburn2Auburn = formatNumber(4500000 * num)
-        auburn3Auburn = formatNumber(9000000 * num)
-        auburn4Auburn = formatNumber(19500000 * num)
-        auburn5Cherry = formatNumber(9000000 * num)
-        auburn5Auburn = formatNumber(15000000 * num)
+        cherryTotal = formatNumber(10000000000 * num * 3)
+        auburnTotal = formatNumber(10000000000 * num * 3)
+        carmineTotal = formatNumber(10000000000 * num * 3)
+        ceruleanTotal = formatNumber(10000000000 * num * 3)
+        azureTotal = formatNumber(10000000000 * num * 3)
 
-        carmine1Spruce = formatNumber(10500000 * num)
-        carmine1Auburn = formatNumber(21000000 * num)
-        carmine2Carmine = formatNumber(7500000 * num)
-        carmine3Carmine = formatNumber(10500000 * num)
-        carmine4Carmine = formatNumber(21000000 * num)
-        carmine4Auburn = formatNumber(10500000 * num)
-        carmine5Carmine = formatNumber(15000000 * num)
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,2,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount (3x for more tools)</p>', unsafe_allow_html=True)
 
-        cerulean1Wheat = formatNumber(7500000 * num)
-        cerulean1Potato = formatNumber(7500000 * num)
-        cerulean1Beetroot = formatNumber(7500000 * num)
-        cerulean1Carmine = formatNumber(21000000 * num)
-        cerulean2Cerulean = formatNumber(9000000 * num)
-        cerulean3Cerulean = formatNumber(12750000 * num)
-        cerulean4Carmine = formatNumber(13500000 * num)
-        cerulean4Cerulean = formatNumber(15000000 * num)
-        cerulean5Cerulean = formatNumber(25500000 * num)
+        createBox("Cherry", getColor("cherry"), cherryTotal)
+        createBox("Auburn Roots", getColor("auburn"), auburnTotal)
+        createBox("Carmine Fungus", getColor("carmine"), carmineTotal)
+        createBox("Cerulean Fungus", getColor("cerulean"), ceruleanTotal)
+        createBox("Azure Roots", getColor("azure"), azureTotal)
+        st.divider()
 
-        azure1Cerulean = formatNumber(36000000 * num)
-        azure2Cerulean = formatNumber(7500000 * num)
-        azure2Azure = formatNumber(7500000 * num)
-        azure3Azure = formatNumber(21000000 * num)
-        azure4Azure = formatNumber(30000000 * num)
-        azure5Auburn = formatNumber(15000000 * num)
-        azure5Carmine = formatNumber(15000000 * num)
-        azure5Cerulean = formatNumber(15000000 * num)
-        azure5Azure = formatNumber(15000000 * num)
 
-        evoker1Azure = formatNumber(82500000 * num)
-        evoker2Auburn = formatNumber(15000000 * num)
-        evoker2Carmine = formatNumber(15000000 * num)
-        evoker2Cerulean = formatNumber(15000000 * num)
-        evoker2Azure = formatNumber(15000000 * num)
-        evoker3Auburn = formatNumber(22500000 * num)
-        evoker3Carmine = formatNumber(22500000 * num)
-        evoker3Cerulean = formatNumber(22500000 * num)
-        evoker3Azure = formatNumber(22500000 * num)
-        evoker2Azure = formatNumber(15000000 * num)
-        evoker4Auburn = formatNumber(30000000 * num)
-        evoker4Carmine = formatNumber(30000000 * num)
-        evoker4Cerulean = formatNumber(30000000 * num)
-        evoker4Azure = formatNumber(30000000 * num)
-        evoker5Amethyst = formatNumber(60000000 * num)
-        evoker5Cherry = formatNumber(60000000 * num)
-        evoker5Azure = formatNumber(60000000 * num)
+    elif type == "The Soul Scythe [V]":
+
+        azureTotal = formatNumber(20000000000 * num)
+        twilightTotal = formatNumber(20000000000 * num)
+        abyssTotal = formatNumber(20000000000 * num)
+        enderTotal = formatNumber(20000000000 * num)
+        voidTotal = formatNumber(20000000000 * num)
+
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,2,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
+
+        createBox("Azure Roots", getColor("azure"), azureTotal)
+        createBox("Twilight Coral", getColor("twilight"), twilightTotal)
+        createBox("Abyss Coral", getColor("abyss"), abyssTotal)
+        createBox("Ender Coral", getColor("ender"), enderTotal)
+        createBox("Void Coral", getColor("void"), voidTotal)
+        st.divider()
+
+    elif type == "Crystal Crusher [V]":
+
+        crusherTotal = formatNumber(1 * num)
+        crystalTotal = formatNumber(1900000000 * num)
+
+        crystal1Crusher = formatNumber(1 * num)
+        crystal2Crystal = formatNumber(50000000 * num)
+        crystal3Crystal = formatNumber(250000000 * num)
+        crystal4Crystal = formatNumber(350000000 * num)
+        crystal5Crystal = formatNumber(1250000000 * num)
 
         loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,1,1,1])
         with loc3:
             st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
 
-        createBox("Wheat", getColor("wheat"), wheatTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Potato", getColor("potato"), potatoTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Beetroot", getColor("beetroot"), beetrootTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Amethyst", getColor("amethyst"), amethystTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Spruce", getColor("spruce"), spruceTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Cherry", getColor("cherry"), cherryTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Auburn", getColor("auburn"), auburnTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Carmine", getColor("carmine"), carmineTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Cerulean", getColor("cerulean"), ceruleanTotal)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createBox("Azure", getColor("azure"), azureTotal)
-
+        createBox("Crystal Crusher [I]", getColor("crystal"), crusherTotal)
+        createBox("Crystal", getColor("crystal"), crystalTotal)
         st.divider()
+            
+        switch = st.selectbox(
+            label = "nothing",
+            label_visibility = "hidden",
+            options = ["Crystal Crusher"]
+        )
 
-        createName("Auburn", getColor("auburn"),getColor("auburn"), 1)
-        createBox("Cherry", getColor("cherry"), auburn1Cherry)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createName("Auburn", getColor("auburn"),getColor("auburn"), 2)
-        createBox("Auburn", getColor("auburn"), auburn2Auburn)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createName("Auburn", getColor("auburn"),getColor("auburn"), 3)
-        createBox("Auburn", getColor("auburn"), auburn3Auburn)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createName("Auburn", getColor("auburn"),getColor("auburn"), 4)
-        createBox("Auburn", getColor("auburn"), auburn4Auburn)
-        st.markdown("<br>", unsafe_allow_html=True)
-        createName("Auburn", getColor("auburn"),getColor("auburn"), 5)
-        createBox("Cherry", getColor("cherry"), auburn5Cherry)
-        createBox("Auburn", getColor("auburn"), auburn5Auburn)
-        st.markdown("<br>", unsafe_allow_html=True)
+        if switch == "Crystal Crusher":
+            createName("Crystal Crusher", getColor("crystal"),getColor("crystal"), 1)
+            createBox("Crystal Crusher [I]", getColor("crystal"), crystal1Crusher)
+            st.markdown("<br>", unsafe_allow_html=True)       
+            createName("Crystal Crusher", getColor("crystal"),getColor("crystal"), 2)
+            createBox("End Crystal", getColor("crystal"), crystal2Crystal)
+            st.markdown("<br>", unsafe_allow_html=True)     
+            createName("Crystal Crusher", getColor("crystal"),getColor("crystal"), 3)
+            createBox("End Crystal", getColor("crystal"), crystal3Crystal)
+            st.markdown("<br>", unsafe_allow_html=True)        
+            createName("Crystal Crusher", getColor("crystal"),getColor("crystal"), 4)
+            createBox("End Crystal", getColor("crystal"), crystal4Crystal)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Crystal Crusher", getColor("crystal"),getColor("crystal"), 5)
+            createBox("End Crystal", getColor("crystal"), crystal5Crystal)
+            st.markdown("<br>", unsafe_allow_html=True)
 
     elif type == "Extras":
         
-        iron = formatNumber(10_000_000_000 * num)
-        rust = formatNumber(10_000_000_000 * num)
-        hageye = formatNumber(128 * num)
+        iron = formatNumber(10000000000 * num)
+        rust = formatNumber(10000000000 * num)
+        hageye = formatNumber(64 * num)
 
         createBox("Iron", getColor("iron"), iron)
-        st.markdown("<br>", unsafe_allow_html=True)
         createBox("Rust", getColor("rust"), rust)
-        st.markdown("<br>", unsafe_allow_html=True)
         createBox("Hag Eye", getColor("hageye"), hageye)
         st.divider()
 
