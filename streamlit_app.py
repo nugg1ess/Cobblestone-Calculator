@@ -923,8 +923,8 @@ elif selector == "Toolmess":
 
 
         createBox("Spruce", getColor("spruce"), spruceTotal)
-        createBox("Azure Roots", getColor("azure"), spruceTotal)
-        createBox("Twilight Coral", getColor("twilight"), spruceTotal)
+        createBox("Azure Roots", getColor("azure"), azureTotal)
+        createBox("Twilight Coral", getColor("twilight"), twilightTotal)
 
         st.divider()
 
