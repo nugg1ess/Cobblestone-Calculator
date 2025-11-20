@@ -34,6 +34,16 @@ def roman(number):
         return '<span style="color:#555555;">[<span style="color:#FFFFFF;">IV<span style="color:#555555;">]'
     elif number == 5:
         return '<span style="color:#555555;">[<span style="color:#FFFFFF;">V<span style="color:#555555;">]'
+    elif number == 6:
+        return '<span style="color:#555555;">[<span style="color:#FFFFFF;">VI<span style="color:#555555;">]'
+    elif number == 7:
+        return '<span style="color:#555555;">[<span style="color:#FFFFFF;">VII<span style="color:#555555;">]'
+    elif number == 8:
+        return '<span style="color:#555555;">[<span style="color:#FFFFFF;">VIII<span style="color:#555555;">]'
+    elif number == 9:
+        return '<span style="color:#555555;">[<span style="color:#FFFFFF;">IX<span style="color:#555555;">]'
+    elif number == 10:
+        return '<span style="color:#555555;">[<span style="color:#FFFFFF;">X<span style="color:#555555;">]'
 
 def getColor(str):
     if str == "wheat":
@@ -44,6 +54,8 @@ def getColor(str):
         return "#fc6e00"
     elif str == "beetroot":
         return "#fc4c49"
+    elif str == "vine":
+        return "#498337"
 
     elif str == "coal":
         return "#272a32"
@@ -66,6 +78,8 @@ def getColor(str):
         return "#2eaa7b"
     elif str == "azure":
         return "#004bfc"
+    elif str == "lapis":
+        return "#0078b8"
 
     elif str == "twilight":
         return "#fcb500"
@@ -75,12 +89,31 @@ def getColor(str):
         return "#da00fc"
     elif str == "void":
         return "#5a0000"
-
     elif str == "crystal":
         return "#5500b6"
 
+    elif str == "dead":
+        return "#795435"
+    elif str == "cactus":
+        return "#40b720"
+    elif str == "redsand":
+        return "#f45912"
+    elif str == "basalt":
+        return "#555f6f"
+    elif str == "gravel":
+        return "#a6a6a6"
+    elif str == "acacia":
+        return "#fc5800"
+    elif str == "granite":
+        return "#cf9061"
+    elif str == "death":
+        return "#5c2727"
+
+
     elif str == "rust":
         return "#b5400e"
+    elif str == "tuff":
+        return "#797979"
 
     elif str == "superior":
         return "#ec1616"
@@ -181,9 +214,9 @@ with loc2:
     st.markdown('<p style="white-space: nowrap; font-weight: bold;">What are you creating?</p>', unsafe_allow_html=True)
 
 
-loc1, toolmessButtonLocation, loc2, corrosiveButtonLocation, loc3 = st.columns([1,8,1,8,1])
+loc1, loc2, loc3, loc4, loc5, loc6, loc7= st.columns([1,8,1,8,1,8,1])
 
-with toolmessButtonLocation:
+with loc2:
     if st.session_state.selector != "Toolmess":
         tt = "secondary"
     else:
@@ -196,7 +229,7 @@ with toolmessButtonLocation:
         st.session_state.selector = "Toolmess"
         st.rerun()
 
-with corrosiveButtonLocation:
+with loc4:
     if st.session_state.selector != "Corrosive":
         tt = "secondary"
     else:
@@ -207,6 +240,19 @@ with corrosiveButtonLocation:
         type = tt
     ):
         st.session_state.selector = "Corrosive"
+        st.rerun()
+
+with loc6:
+    if st.session_state.selector != "Bread":
+        tt = "secondary"
+    else:
+        tt = "primary"
+    if st.button(
+        label = "Bread",
+        use_container_width = True,
+        type = tt
+    ):
+        st.session_state.selector = "Bread"
         st.rerun()
 
 st.divider()
@@ -235,13 +281,16 @@ except ValueError:
 st.divider()
 
 select = []
-switcher = []
+#switcher = []
 if st.session_state.selector == "Toolmess":
     select = ["All Materials","Golden Hoe [V]","Iron Pickaxe [V]","Azure Extractor [V]","Twilight Scythe [V]"]
-    switcher = ["Golden Hoe [V]","Iron Pickaxe [V]","Azure Extractor [V]","Twilight Scythe [V]"]
+#    switcher = ["Golden Hoe [V]","Iron Pickaxe [V]","Azure Extractor [V]","Twilight Scythe [V]"]
 elif st.session_state.selector == "Corrosive":
     select = ["All Materials","Superior Mushroom Knife [V]","Enchanted Evoker [V]","The Soul Scythe [V]","Crystal Crusher [V]","Extras"]
-    switcher = ["Superior Mushroom Knife [V]","Enchanted Evoker [V]","The Soul Scythe [V]","Crystal Crusher [V]"]
+#    switcher = ["Superior Mushroom Knife [V]","Enchanted Evoker [V]","The Soul Scythe [V]","Crystal Crusher [V]"]
+elif st.session_state.selector == "Bread":
+    select = ["All Materials","Sun Antenna","Extras"]
+#    switcher = ["Sun Antenna"]
 
 loc1,loc2,loc3 = st.columns([1,1,1])
 with loc2:
@@ -261,8 +310,276 @@ type = st.session_state.type
 selector = st.session_state.selector
 num = st.session_state.amount
 
+if selector == "Bread":
+    if type == "All Materials":
 
-if selector == "Corrosive":
+        amethystTotal = formatNumber(250000000000 * num)
+        vineTotal = formatNumber(250000000000 * num)
+        tuffTotal = formatNumber(50000000000 * num)
+        superiorTotal = formatNumber(100000000 * num)
+        lapisTotal = formatNumber(200000000 * num)
+        enderTotal = formatNumber(100000000 * num)
+        deadTotal = formatNumber(16900000000 * num)
+        cacTotal = formatNumber(11500000000 * num)
+        redTotal = formatNumber(18300000000 * num)
+        basaltTotal = formatNumber(19700000000 * num)
+
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,1,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
+
+        createBox("Superior Mushroom", getColor("superior"), superiorTotal)
+        createBox("Vine", getColor("vine"), vineTotal)
+        createBox("Amethyst", getColor("amethyst"), amethystTotal)
+        createBox("Lapis", getColor("lapis"), lapisTotal)
+        createBox("Ender Coral", getColor("ender"), enderTotal)
+        createBox("Dead Bush", getColor("dead"), deadTotal)
+        createBox("Cactus", getColor("cactus"), cacTotal)
+        createBox("Red Sand", getColor("redsand"), redTotal)
+        createBox("Basalt", getColor("basalt"), basaltTotal)
+        createBox("Tuff", getColor("tuff"), tuffTotal)
+
+
+    elif type == "Sun Antenna":
+
+        superiorTotal = formatNumber(100000000 * num)
+        lapisTotal = formatNumber(200000000 * num)
+        enderTotal = formatNumber(100000000 * num)
+        deadTotal = formatNumber(16900000000 * num)
+        cacTotal = formatNumber(11500000000 * num)
+        redTotal = formatNumber(18300000000 * num)
+        basaltTotal = formatNumber(19700000000 * num)
+
+        dead1Lapis = formatNumber(200000000 * num)
+        dead2Dead = formatNumber(100000000 * num)
+        dead3Dead = formatNumber(300000000 * num)
+        dead4Dead = formatNumber(500000000 * num)
+        dead5Dead = formatNumber(500000000 * num)
+        dead5Superior = formatNumber(100000000 * num)
+        dead5Ender = formatNumber(100000000 * num)
+        dead6Dead = formatNumber(700000000 * num)
+        dead7Dead = formatNumber(1000000000 * num)
+        dead8Dead = formatNumber(1100000000 * num)
+        dead9Dead = formatNumber(1200000000 * num)
+        dead10Dead = formatNumber(1300000000 * num)
+
+        cac1Dead = formatNumber(1500000000 * num)
+        cac2Cac = formatNumber(200000000 * num)
+        cac3Cac = formatNumber(500000000 * num)
+        cac4Cac = formatNumber(600000000 * num)
+        cac5Cac = formatNumber(1000000000 * num)
+        cac6Cac = formatNumber(500000000 * num)
+        cac6Dead = formatNumber(5000000000 * num)
+        cac7Cac = formatNumber(1200000000 * num)
+        cac8Cac = formatNumber(1400000000 * num)
+        cac9Cac = formatNumber(1600000000 * num)
+        cac10Cac = formatNumber(2000000000 * num)
+
+        red1Cac = formatNumber(2500000000 * num)
+        red2Red = formatNumber(400000000 * num)
+        red3Red = formatNumber(700000000 * num)
+        red4Red = formatNumber(1000000000 * num)
+        red5Red = formatNumber(1500000000 * num)
+        red6Dead = formatNumber(1000000000 * num)
+        red6Red = formatNumber(1000000000 * num)
+        red7Dead = formatNumber(1200000000 * num)
+        red7Red = formatNumber(1200000000 * num)
+        red8Red = formatNumber(1600000000 * num)
+        red9Red = formatNumber(1800000000 * num)
+        red10Red = formatNumber(2500000000 * num)
+
+        bas1Red = formatNumber(3000000000 * num)
+        bas2Red = formatNumber(400000000 * num)
+        bas2Bas = formatNumber(400000000 * num)
+        bas3Red = formatNumber(700000000 * num)
+        bas3Bas = formatNumber(700000000 * num)
+        bas4Red = formatNumber(1000000000 * num)
+        bas4Bas = formatNumber(1000000000 * num)
+        bas5Dead = formatNumber(1500000000 * num)
+        bas5Red = formatNumber(1500000000 * num)
+        bas5Bas = formatNumber(1500000000 * num)
+        bas6Bas = formatNumber(2500000000 * num)
+        bas7Bas = formatNumber(2800000000 * num)
+        bas8Bas = formatNumber(3200000000 * num)
+        bas9Bas = formatNumber(3600000000 * num)
+        bas10Bas = formatNumber(4000000000 * num)
+
+
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,1,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
+
+        createBox("Superior Mushroom", getColor("superior"), superiorTotal)
+        createBox("Lapis", getColor("lapis"), lapisTotal)
+        createBox("Ender Coral", getColor("ender"), enderTotal)
+        createBox("Dead Bush", getColor("dead"), deadTotal)
+        createBox("Cactus", getColor("cactus"), cacTotal)
+        createBox("Red Sand", getColor("redsand"), redTotal)
+        createBox("Basalt", getColor("basalt"), basaltTotal)
+
+        st.divider()
+            
+        switch = st.selectbox(
+            label = "nothing",
+            label_visibility = "hidden",
+            options = ["Dead Spade","Cactus Spade","Red Spade","Basalt Spade"]
+        )
+
+        if switch == "Dead Spade":
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 1)
+            createBox("Lapis", getColor("lapis"), dead1Lapis)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 2)
+            createBox("Dead Bush", getColor("dead"), dead2Dead)
+            st.markdown("<br>", unsafe_allow_html=True)        
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 3)
+            createBox("Dead Bush", getColor("dead"), dead3Dead)
+            st.markdown("<br>", unsafe_allow_html=True)       
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 4)
+            createBox("Dead Bush", getColor("dead"), dead4Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 5)
+            createBox("Superior Mushroom", getColor("superior"), dead5Superior)
+            createBox("Ender Coral", getColor("ender"), dead5Ender)
+            createBox("Dead Bush", getColor("dead"), dead5Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 6)
+            createBox("Dead Bush", getColor("dead"), dead6Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 7)
+            createBox("Dead Bush", getColor("dead"), dead7Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 8)
+            createBox("Dead Bush", getColor("dead"), dead8Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 9)
+            createBox("Dead Bush", getColor("dead"), dead9Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Dead Spade", getColor("dead"),getColor("dead"), 10)
+            createBox("Dead Bush", getColor("dead"), dead10Dead)
+            st.markdown("<br>", unsafe_allow_html=True)
+
+        elif switch == "Cactus Spade":
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 1)
+            createBox("Dead Bush", getColor("dead"), cac1Dead)
+            st.markdown("<br>", unsafe_allow_html=True)       
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 2)
+            createBox("Cactus", getColor("cactus"), cac2Cac)
+            st.markdown("<br>", unsafe_allow_html=True)     
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 3)
+            createBox("Cactus", getColor("cactus"), cac3Cac)
+            st.markdown("<br>", unsafe_allow_html=True)        
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 4)
+            createBox("Cactus", getColor("cactus"), cac4Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 5)
+            createBox("Cactus", getColor("cactus"), cac5Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 6)
+            createBox("Dead Bush", getColor("dead"), cac6Dead)
+            createBox("Cactus", getColor("cactus"), cac6Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 7)
+            createBox("Cactus", getColor("cactus"), cac7Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 8)
+            createBox("Cactus", getColor("cactus"), cac8Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 9)
+            createBox("Cactus", getColor("cactus"), cac9Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Cactus Spade", getColor("cactus"),getColor("cactus"), 10)
+            createBox("Cactus", getColor("cactus"), cac10Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+
+        elif switch == "Red Spade":
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 1)
+            createBox("Cactus", getColor("cactus"), red1Cac)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 2)
+            createBox("Red Sand", getColor("redsand"), red2Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 3)
+            createBox("Red Sand", getColor("redsand"), red3Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 4)
+            createBox("Red Sand", getColor("redsand"), red4Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 5)
+            createBox("Red Sand", getColor("redsand"), red5Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 6)
+            createBox("Dead Bush", getColor("dead"), red6Dead)
+            createBox("Red Sand", getColor("redsand"), red6Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 7)
+            createBox("Dead Bush", getColor("dead"), red7Dead)
+            createBox("Red Sand", getColor("redsand"), red7Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 8)
+            createBox("Red Sand", getColor("redsand"), red8Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 9)
+            createBox("Red Sand", getColor("redsand"), red9Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Red Spade", getColor("redsand"),getColor("redsand"), 10)
+            createBox("Red Sand", getColor("redsand"), red10Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+
+        elif switch == "Basalt Spade":
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 1)
+            createBox("Red Sand", getColor("redsand"), bas1Red)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 2)
+            createBox("Red Sand", getColor("redsand"), bas2Red)
+            createBox("Basalt", getColor("basalt"), bas2Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 3)
+            createBox("Red Sand", getColor("redsand"), bas3Red)
+            createBox("Basalt", getColor("basalt"), bas3Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 4)
+            createBox("Red Sand", getColor("redsand"), bas4Red)
+            createBox("Basalt", getColor("basalt"), bas4Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 5)
+            createBox("Dead Bush", getColor("dead"), bas5Dead)
+            createBox("Red Sand", getColor("redsand"), bas5Red)
+            createBox("Basalt", getColor("basalt"), bas5Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 6)
+            createBox("Basalt", getColor("basalt"), bas6Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 7)
+            createBox("Basalt", getColor("basalt"), bas7Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 8)
+            createBox("Basalt", getColor("basalt"), bas8Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 9)
+            createBox("Basalt", getColor("basalt"), bas9Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+            createName("Basalt Spade", getColor("basalt"),getColor("basalt"), 10)
+            createBox("Basalt", getColor("basalt"), bas10Bas)
+            st.markdown("<br>", unsafe_allow_html=True)
+
+
+
+    elif type == "Extras":
+
+        amethystTotal = formatNumber(250000000000 * num)
+        vineTotal = formatNumber(250000000000 * num)
+        tuffTotal = formatNumber(50000000000 * num)
+
+        loc1,loc2,loc3,loc4,loc5 = st.columns([1,1,1,1,1])
+        with loc3:
+            st.markdown('<p style="white-space: nowrap; font-weight: bold;">Total Amount</p>', unsafe_allow_html=True)
+
+        createBox("Amethyst", getColor("amethyst"), amethystTotal)
+        createBox("Vine", getColor("vine"), vineTotal)
+        createBox("Tuff", getColor("tuff"), tuffTotal)
+
+elif selector == "Corrosive":
     if type == "All Materials":
 
         infTotal = formatNumber(622_500_000 * num)
